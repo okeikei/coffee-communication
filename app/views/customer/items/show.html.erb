@@ -1,0 +1,30 @@
+ <div class="row">
+  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+   <%= attachment_image_tag @item, :image %>
+   <p>アイテム名：<%= @item.name %></p>
+   <p>説明：<%= @item.introduction %></p>
+   <p>税抜金額：<%= @item.price%></p>
+ 
+ <%= form_with model:@cart_items, url:"/cart_items", local:true do |f| %>
+ <%= f.hidden_field :item_id, value: params[:id] %>
+ <%= f.select :amount, *[1..10] %>
+ <%= f.submit 'カートに入れる' %>
+ 
+ <% end %>
+
+  </div>
+  
+  <% if @item.favorited_by?(current_customer) %>
+    <p>
+      <%= link_to favorite_destroy_path(@item), method: :delete do %>
+        ♥<%= @item.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to favorites_path(@item), method: :post do %>
+        ♡<%= @item.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+</div>
