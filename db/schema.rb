@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_30_135554) do
+ActiveRecord::Schema.define(version: 2022_01_31_124624) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "costomer_id", null: false
@@ -75,12 +75,12 @@ ActiveRecord::Schema.define(version: 2022_01_30_135554) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "genre_id", null: false
-    t.string "name", null: false
-    t.string "image_id", null: false
-    t.text "introduction", null: false
-    t.integer "price", null: false
-    t.boolean "is_active", null: false
+    t.integer "genre_id"
+    t.string "name"
+    t.string "image_id"
+    t.text "introduction"
+    t.integer "price"
+    t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -103,6 +103,20 @@ ActiveRecord::Schema.define(version: 2022_01_30_135554) do
     t.integer "total_payment", null: false
     t.integer "payment_method", null: false
     t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sell_items", force: :cascade do |t|
+    t.string "image_id"
+    t.text "introduction"
+    t.integer "price"
+    t.integer "item_id"
+    t.integer "customer_id"
+    t.integer "amount"
+    t.integer "genre_id"
+    t.integer "status"
+    t.boolean "is_active", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

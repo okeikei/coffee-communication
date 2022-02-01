@@ -11,6 +11,8 @@ class Customer < ApplicationRecord
   
   has_many :items
   
+  has_many :sell_items
+  
   
   
   def customer_infomation

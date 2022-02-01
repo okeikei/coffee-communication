@@ -1,5 +1,7 @@
 class Customer::ItemsController < ApplicationController
   
+  before_action :authenticate_customer!
+  
   def new
     @item = Item.new
     @genre = Genre.all
@@ -13,6 +15,7 @@ class Customer::ItemsController < ApplicationController
   
   def index
     @items = Item.all
+    @genre = Genre.find(params[:id])
     if params[:is_active] == true
       @items.is_active = "販売中"
     

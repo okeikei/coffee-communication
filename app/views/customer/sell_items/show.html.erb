@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+
+   <p>アイテム名：<%= @sell_items.name %></p>
+   <p>説明：<%= @sell_items.introduction %></p>
+   <p>値段：<%= @sell_items.price %></p>
+   <p>販売ステータス：<%= @sell_items.is_active %></p>
+   
+
+   <%= link_to "編集", sell_item_edit_path, class: 'nav-link text-dark' %>
+  </div>
+</div>

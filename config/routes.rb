@@ -55,7 +55,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   post "/favorites" => "customer/favorites#create"
   delete "/favorites" => "customer/favorites#destroy", as: 'favorite_destroy'
   
-  
+  get "/sell_item" => "customer/sell_items#show", as: 'sell_item_show'
+  get "/sell_item/edit" => "customer/sell_items#edit"
   
 #namespaceをつけるとURLに名前を付けることができる
   namespace :admin do
