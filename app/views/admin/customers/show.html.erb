@@ -1,5 +1,6 @@
 <div class="row">
  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+
   <p>last_name</p>
   <p><%= @customer.last_name %></p>
   
@@ -20,14 +21,18 @@
   
   <p>telephone_number</p>
   <p><%= @customer.telephone_number %></p>
+    <% if @customer == current_customer %>
   
    <% if @customer.is_deleted == false %>
-    会員ステータス: 有効
-    <% else %>
-    会員ステータス: 退会
-   <% end %>
+     会員ステータス: 有効
+     <% else %>
+     会員ステータス: 退会
+    <% end %>
 
-  <%= link_to "編集", edit_admin_customer_path(@customer.id), class: 'nav-link text-dark' %>
-  <%= link_to "注文履歴", admin_root_path, class: 'nav-link text-dark' %>
+   <%= link_to "編集", edit_admin_customer_path(@customer.id), class: 'nav-link text-dark' %>
+   <%= link_to "注文履歴", admin_root_path, class: 'nav-link text-dark' %>
+  <% end %>
+  <% else %>
+  <% end %>
  </div>
 </div>

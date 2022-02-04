@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_31_124624) do
+ActiveRecord::Schema.define(version: 2022_02_03_123607) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "costomer_id", null: false
@@ -37,6 +37,13 @@ ActiveRecord::Schema.define(version: 2022_01_31_124624) do
     t.integer "item_id", null: false
     t.integer "customer_id", null: false
     t.integer "amount", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "customer_favorites", force: :cascade do |t|
+    t.integer "custoer_id"
+    t.integer "sender_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -75,6 +82,7 @@ ActiveRecord::Schema.define(version: 2022_01_31_124624) do
   end
 
   create_table "items", force: :cascade do |t|
+    t.integer "customer_id"
     t.integer "genre_id"
     t.string "name"
     t.string "image_id"
@@ -107,10 +115,21 @@ ActiveRecord::Schema.define(version: 2022_01_31_124624) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "relationships", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "follow_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id", "follow_id"], name: "index_relationships_on_customer_id_and_follow_id", unique: true
+    t.index ["customer_id"], name: "index_relationships_on_customer_id"
+    t.index ["follow_id"], name: "index_relationships_on_follow_id"
+  end
+
   create_table "sell_items", force: :cascade do |t|
     t.string "image_id"
     t.text "introduction"
     t.integer "price"
+    t.integer "name"
     t.integer "item_id"
     t.integer "customer_id"
     t.integer "amount"

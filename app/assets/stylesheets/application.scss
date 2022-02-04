@@ -17,3 +17,15 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+.follow-btn{
+    .btn{
+      width: 4%;
+    }
+}
+
+.unfollow-btn{
+    .btn{
+      width: 4%;
+    }
+}

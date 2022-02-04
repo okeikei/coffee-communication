@@ -3,6 +3,10 @@ class Customer::CustomersController < ApplicationController
   def show
     @customer = current_customer
   end
+    
+  def index
+    @customers = Customer.all
+  end
   
   def edit
     @customer = current_customer

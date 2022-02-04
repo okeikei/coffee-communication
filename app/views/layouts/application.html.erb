@@ -39,11 +39,12 @@
               <%= link_to '商品投稿フォーム', item_new_path, class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
-              <%= link_to '商品投稿編集フォーム', sell_item_show_path, class: 'nav-link text-dark' %>
+              <%= link_to '商品投稿編集フォーム', sell_item_index_path, class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
               <%= link_to "商品一覧", item_index_path, class: 'nav-link text-dark' %>
             </li>
+            
             <li class="nav-item">
               <%= link_to "カート一覧", cart_items_path, class: 'nav-link text-dark' %>
             </li>
@@ -86,10 +87,14 @@
     <%= yield %>
     </main>
     <footer class="bg-dark text-white pt-5 pb-4">
+      <li class="nav-item">
+              <%= link_to "ユーザー一覧", customer_index_path, class: 'nav-link text-blue' %>
+            </li>
       <div class="container">
         <div class="row no-gutters">
           <div class="col-md-4">
             <%= image_tag('Creaters Base') %>
+            
         </div>
       </div>
     </footer>

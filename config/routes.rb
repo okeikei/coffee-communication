@@ -15,7 +15,10 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 }
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
+ namespace :customer do
+  resources :relationships, only: [:create, :destroy]
+ end
+  
   root to: 'customer/homes#top'
   get "/home/about" => "customer/homes#about"
 
@@ -28,6 +31,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   
   
   get "/customer/show" => "customer/customers#show"
+  get "/customer/index" => "customer/customers#index"
   get "/customer/edit" => "customer/customers#edit"
   patch "/customer" => "customer/customers#update"
   get "/customer/unsubscribe" => "customer/customers#unsubscribe"
@@ -52,11 +56,13 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   get "/orders" => "customer/orders#index", as: 'order_index'
   get "/order/:id" => "customer/orders#show", as: 'order_show'
   
-  post "/favorites" => "customer/favorites#create"
+  post "/favorites/:item_id" => "customer/favorites#create", as: 'favorite_create'
   delete "/favorites" => "customer/favorites#destroy", as: 'favorite_destroy'
   
-  get "/sell_item" => "customer/sell_items#show", as: 'sell_item_show'
+  get "/sell_item/index" => "customer/sell_items#index", as: 'sell_item_index'
+  get "/sell_item/show" => "customer/sell_items#show", as: 'sell_item_show'
   get "/sell_item/edit" => "customer/sell_items#edit"
+  
   
 #namespaceをつけるとURLに名前を付けることができる
   namespace :admin do
@@ -66,5 +72,5 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   resources :genres, only: [:index, :create, :edit, :update]
   resources :orders, only: [:show, :update]
   resources :order_details, only: [:update]
-end
+  end
 end

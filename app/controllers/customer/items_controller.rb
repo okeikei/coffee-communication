@@ -9,16 +9,15 @@ class Customer::ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
+    @item.customer_id = current_customer.id
     @item.save
     redirect_to item_index_path
   end
   
   def index
     @items = Item.all
-    @genre = Genre.find(params[:id])
     if params[:is_active] == true
       @items.is_active = "販売中"
-    
     elsif params[:is_active] == false
       @items.is_active = "販売停止中"
     end
@@ -46,7 +45,7 @@ class Customer::ItemsController < ApplicationController
   
   private
   def item_params
-    params.require(:item).permit(:name, :image, :introduction, :genre_id, :price, :is_active)
+    params.require(:item).permit(:customer_id, :name, :image, :introduction, :genre_id, :price, :is_active)
   end
 
 end

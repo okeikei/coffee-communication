@@ -5,6 +5,7 @@ class CreateSellItems < ActiveRecord::Migration[5.2]
       t.string :image_id
       t.text :introduction
       t.integer :price
+      t.integer :name
       t.integer :item_id
       t.integer :customer_id
       t.integer :amount

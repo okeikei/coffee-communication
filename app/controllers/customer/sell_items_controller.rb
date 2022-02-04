@@ -1,7 +1,11 @@
 class Customer::SellItemsController < ApplicationController
     
-   def show
+   def index
     @sell_items = current_customer.items
+   end 
+   
+   def show
+   @sell_items = current_customer.items
     if params[:is_active] == true
       @items.is_active = "販売中"
     

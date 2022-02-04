@@ -1,14 +1,12 @@
 class Item < ApplicationRecord
     
   attachment :image
-  has_many :cart_items
-  has_many :genres
-  has_many :order_details
-  has_many :sell_items
-
   has_many :favorites, dependent: :destroy
   has_many :favorite_posts, through: :favorites, source: :post
-  
+  has_many :cart_items
+  belongs_to :customer
+  belongs_to :genre
+  has_many :order_details
   
   enum is_active: { 販売中: true, 販売停止中: false}
   

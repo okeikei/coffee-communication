@@ -20,7 +20,9 @@
   
   <p>telephone_number</p>
   <p><%= @customer.telephone_number %></p>
-
+  
+  
+<% if @customer.is_deleted == false %>
   <%= link_to "編集", customer_edit_path, class: 'nav-link text-dark' %>
  
   <%= link_to "退会", customer_unsubscribe_path, class: 'nav-link text-dark' %>
@@ -28,5 +30,10 @@
   <%= link_to "配送先", addresses_path, class: 'nav-link text-dark' %>
   
   <%= link_to "注文履歴", order_index_path, class: 'nav-link text-dark' %>
+  
+  <%= link_to "注文履歴", order_index_path, class: 'nav-link text-dark' %>
+ <% end %>
+ <% else %>
+ <% end %>
  </div>
 </div>

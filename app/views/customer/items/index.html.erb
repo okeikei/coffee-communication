@@ -5,10 +5,9 @@
   <% end %>
   <p>アイテム名：<%= item.name %></p>
   <p>説明：<%= item.introduction %></p>
-  <p>値段：<%= item.price %></p>
- <% @genre.each do |genre| %>
-  <p>値段：<%= genre.name %></p>
- <% end %>
+  <p>値段：<%= item.price %>円</p>
+  <p>ジャンル：<%= item.genre.name %></p>
   <p>販売ステータス：<%= item.is_active %></p>
+  <p>製作者：<%= item.customer.full_name %></p>
 </div>
-<% end %>
+  <% end %>
