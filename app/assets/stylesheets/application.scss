@@ -14,18 +14,71 @@
  *= require_self
  */
 
+$enable-rounded: false;
+$primary: #416E73 !default;
+
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-.follow-btn{
-    .btn{
-      width: 4%;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Dosis&family=Noto+Sans+JP&display=swap');
+
+body {
+  padding-top: 140px;
+  padding-bottom: 40px;
+  font-family: 'Noto Sans JP', sans-serif;
+  background: linear-gradient(135deg, #f0f0f0, #ffffff);
 }
 
-.unfollow-btn{
-    .btn{
-      width: 4%;
-    }
+.navbar-bg {
+  background: linear-gradient(90deg, #9BCEFF, #AFE0ED);
+}
+
+.logo {
+  font-family: 'Dosis', sans-serif;
+}
+
+.card-org {
+  border: 2px solid #A6BDBF;
+  background: linear-gradient(-135deg, #9BCEFF, #AFE0ED);
+}
+
+.sub-title {
+  font-size: 15px;
+}
+
+.sell-item-img {
+  height: 150px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.gnavi a{
+    /*線の基点とするためrelativeを指定*/
+  position: relative;
+}
+
+.gnavi a:hover{
+  color:#000;
+}
+
+.gnavi a::after {
+    content: '';
+    /*絶対配置で線の位置を決める*/
+    position: absolute;
+    bottom: 15px;
+    left: 10%;
+    /*線の形状*/
+    width: 80%;
+    height: 2px;
+    background:#000;
+    /*アニメーションの指定*/
+    transition: all .3s;
+    transform: scale(0, 1);/*X方向0、Y方向1*/
+    transform-origin: left top;/*左上基点*/
+}
+
+/*現在地とhoverの設定*/
+.gnavi a:hover::after {
+    transform: scale(1, 1);/*X方向にスケール拡大*/
 }

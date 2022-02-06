@@ -11,6 +11,8 @@ class Customer < ApplicationRecord
   
   has_many :items
   
+  has_many :item_commetns
+  
   has_many :favorites, dependent: :destroy
   has_many :favorite_posts, through: :favorites, source: :post
   
@@ -25,7 +27,12 @@ class Customer < ApplicationRecord
   end
   
   def full_name
-    self.last_name + self.first_name
+    self.last_name +  self.first_name
+    #データ型変更の場合はto_iやto_sを使用
+  end
+  
+  def full_name_kana
+    self.last_name_kana +  self.first_name_kana
     #データ型変更の場合はto_iやto_sを使用
   end
   

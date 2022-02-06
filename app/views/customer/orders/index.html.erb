@@ -2,7 +2,7 @@
 <div>
   <%= link_to order_show_path(order) do %>
   <p>
-<p>購入者名：<%= order.item.name %></p>
+<p>購入者名：<%= order.name %></p>
 <% end %>
  <p>購入日時：<%= order.updated_at %></p>
  <p>配送先：<%= order.full_address %></p>

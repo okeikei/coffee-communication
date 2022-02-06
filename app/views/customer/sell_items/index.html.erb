@@ -1,12 +1,24 @@
-<% @sell_items.each do |sell_item| %>
- <div>
-  <%= link_to sell_item_show_path do %>
-  <%= attachment_image_tag sell_item, :image %>
+<div class="container">
+ <div class="row">
+  <% @sell_items.each do |sell_item| %>
+   <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
+    <div class="card shadow card-org">
+     <div class="bg-white">
+      <%= attachment_image_tag sell_item, :image, class: 'img-fluid sell-item-img' %>
+     </div>
+     <div class="card-body">
+       <h5 class="card-title"><%= sell_item.name %></h5>
+       <div class="card-text">
+        <p>値段：<%= sell_item.price %>円</p>
+        <p>ジャンル：<%= sell_item.genre.name %></p>
+        <p>販売ステータス：<%= sell_item.is_active %></p>
+        <p>製作者：<%= sell_item.customer.full_name %></p>
+       </div>
+       <%= link_to "編集", edit_customer_sell_item_path(sell_item.id), class: 'btn btn-primary' %>
+     </div>
+    </div>
+   </div>
+   
   <% end %>
-  <p>アイテム名：<%= sell_item.name %></p>
-  <p>値段：<%= sell_item.price %>円</p>
-  <p>値段：<%= sell_item.genre.name %></p>
-  <p>販売ステータス：<%= sell_item.is_active %></p>
-  <p>製作者：<%= sell_item.customer.full_name %></p>
+ </div>
 </div>
-  <% end %>

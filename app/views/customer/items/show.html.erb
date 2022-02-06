@@ -7,7 +7,7 @@
    <p>税抜金額：<%= @item.price%></p>
    <p>製作者：<%= @item.customer.full_name %></p>
  
- <%= form_with model:@cart_items, url:"/cart_items/create", method: :post, local:true do |f| %>
+ <%= form_with model:@cart_items, url: cart_items_create_path, method: :post, local:true do |f| %>
  <%= f.hidden_field :item_id, value: params[:id] %>
  <%= f.select :amount, *[1..10] %>
  <%= f.submit 'カートに入れる' %>
@@ -26,6 +26,33 @@
       <% end %>
     </p>
   <% end %>
+  
+  <%= form_with(model: @item_comment, url: item_comment_create_path(@item.id), method: :post, local: true) do |f| %>
+
+    <%= f.text_area :comment, rows:'5', placeholder: "商品のコメント", class: "form-control form-control-sm" %>
+    
+    <div class="form-group row" id="rating-form"> <%#id要素の付与がポイント%>
+    <%= f.label :rate,'評価', class:'star-title' %>　<%#保存したいカラムの指定%>
+        <%= f.hidden_field :rate, :value => 'score' %>
+    </div>
+
+    <%= f.submit "投稿する" %>
+    
+　  <%= link_to item_comment_index_path do %>
+　    <p>コメント一覧</p>
+　  <% end %>
+  <% end %>
+
+
+<script>
+    $('#rating-form').raty({
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: '<%= asset_path('star-half.png') %>',
+        half: true, 
+        scoreName: 'item_comment[rate]'
+    });
+</script>
+
+
   </div>
-  
-  

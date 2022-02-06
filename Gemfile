@@ -72,3 +72,4 @@ gem 'font-awesome-sass', '~> 5.13'
 gem 'pry-byebug'
 gem "enum_help"
 gem "nested_form"
+gem "rubocop"

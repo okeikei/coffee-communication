@@ -6,6 +6,11 @@ class Customer::CustomersController < ApplicationController
     
   def index
     @customers = Customer.all
+    @sell_items = current_customer.items
+  end
+  
+  def register
+    @customer = Customer.find(params[:id])
   end
   
   def edit

@@ -4,6 +4,7 @@ class Item < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_posts, through: :favorites, source: :post
   has_many :cart_items
+  has_many :item_commetns
   belongs_to :customer
   belongs_to :genre
   has_many :order_details

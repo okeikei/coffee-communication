@@ -1,34 +1,32 @@
-<% @customers.each do |customer| %>
-  <div>
-  <%= link_to customer_show_path(customer) do %>
- </div>
-   名前：<%= customer.full_name %>
-  <% end %>
-
-
-
-<% unless current_customer == customer %>
-    <% if current_customer.following?(customer) %>
-
-      <%#= form_for(current_customer.relationships.find_by(follow_id: customer.id), html: { method: :delete }) do |f| %>
-      <%= form_with url: customer_relationship_path(customer), method: :delete, local:true do |f| %>
-        <%= hidden_field_tag :follow_id, customer.id %>
-        <%= f.submit 'Unfollow', class: 'btn btn-danger' %>
-      <% end %>
-    <% else %>
-      <%#= form_for(relationship_create_path) do |f| %>
-      <%= form_with url: customer_relationships_path , local:true do |f| %>
-        <%= hidden_field_tag :follow_id, customer.id %>
-        <div class="follow-btn">
-          <%= f.submit 'Follow', class: 'btn btn-primary' %>
+<div class="container">
+  <div class="row">
+    <% @customers.each do |customer| %>
+    <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
+      <div class="card shadow card-org">
+        <div class="bg-white">
+          <%= link_to customer_register_path(customer.id) do %>
+            <div class="card-body">
+            <h5 class="card-title"><%= customer.full_name %></h5>
+            <div class="card-text">
+          <% end %>
+            <% unless current_customer == customer %>
+              <% if current_customer.following?(customer) %>
+                <%= form_with url: customer_relationship_path(customer), method: :delete, local:true do |f| %>
+                  <%= hidden_field_tag :follow_id, customer.id %>
+                  <%= f.submit 'Unfollow', class: 'btn btn-danger btn-sm' %>
+                <% end %>
+              <% else %>
+                <%= form_with url: customer_relationships_path , local:true do |f| %>
+                  <%= hidden_field_tag :follow_id, customer.id %>
+                  <%= f.submit 'Follow', class: 'btn btn-primary btn-sm' %>
+                <% end %>
+              <% end %>
+             <% end %>
+            </div>
+            </div>
         </div>
-      <% end %>
+      </div>
+    </div>
     <% end %>
-  <% end %>
-
-
-
-<% end %>
-
-
-
+  </div>
+</div>
