@@ -35,6 +35,25 @@ class Customer::ItemsController < ApplicationController
     end
   end
   
+  
+  def search
+    if params[:keyword].present?
+      @keyword = params[:keyword]
+      if params[:search_category] === "customer_name"
+        ## use検索処理
+        customer_name = Customer.where('name LIKE ?', "%#{@keyword}%").pluck(:name)
+        @items = Item.where(customer_name: customer_name)
+      else
+        params[:search_category] === "genre"
+        genre_id = Genre.where('name LIKE ?', "%#{@keyword}%").pluck(:id)
+        @items = Item.where(genre_id: genre_id)
+      end
+    else
+      @items = Item.all
+    end
+  end
+
+  
   # def edit
   #   # @item = Item.where(customer_id: params[:id])
   # end

@@ -3,6 +3,10 @@
 <%= form_with model: @customer, url: customer_registration_path, local: true do |f| %>
   <%= render "customer/shared/error_messages", resource: resource %>
   
+  <h4>トップ画像</h4>
+  <%= f.attachment_field :image %>
+  </div>
+  
   <div class="field">
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>

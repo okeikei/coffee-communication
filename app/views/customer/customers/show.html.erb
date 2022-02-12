@@ -1,5 +1,6 @@
 <div class="">
  <div class="text-center">
+  <p><%= attachment_image_tag @customer, :image, class: 'img-fluid customer-img' %></p>
   <p>名前</p>
   <p><%= @customer.full_name %></p>
   
@@ -26,6 +27,10 @@
   <%= link_to "注文履歴", order_index_path, class: 'nav-link text-dark' %>
   
   <%= link_to "投稿商品", customer_sell_items_path, class: 'nav-link text-dark' %>
+  
+  <%= link_to "フォロー", customer_followes_path(@customer), class: 'nav-link text-dark' %>
+  
+  <%= link_to "フォロワー", customer_followers_path(@customer), class: 'nav-link text-dark' %>
   
  <% end %>
  </div>

@@ -1,15 +1,30 @@
-<h5>トップページ</h5>
-<h2>検索</h2>
-　　　<%= form_tag(root_path, method: :get) do %>
-      <%= text_field_tag :search %>
-      <%= submit_tag 'Search', name: nil %>
-      <% end %>
-<h3>商品</h3>
-<% @items.each do |item| %>
-<div>
-  <%= attachment_image_tag item, :image %>
-  <p>アイテム名：<%= item.name %></p>
-  <p>説明：<%= item.introduction %></p>
-  <p>値段：<%= item.price %>円</p>
+<div class="container">
+  <div class="row">  
+    <h5>トップページ</h5>
+  </div>
+</div>
+<div class="container">
+  <div class="row">    
+
+  </div>
+</div>
+<div class="container">
+  <div class="row">    
+    <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
+      <div class="card shadow card-org">
+        <div class="bg-white">
+          <% @items.each do |item| %>
+        </div>
+      <div class="card-body">
+        <h5 class="card-title"><%= item.name %></h5>
+          <div class="card-text">
+            <%= attachment_image_tag item, :image %>
+            <p>説明：<%= item.introduction %></p>
+            <p>値段：<%= item.price %>円</p>
+      </div>
+    </div>
+  </div>
 </div>
 <% end %>
+</div>
+</div>

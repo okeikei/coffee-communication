@@ -1,7 +1,7 @@
 class Customer < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  
+  attachment :image
   
   has_many :orders
   
@@ -10,6 +10,8 @@ class Customer < ApplicationRecord
   has_many :addresses
   
   has_many :items
+  
+  has_many :sell_items
   
   has_many :item_commetns
   

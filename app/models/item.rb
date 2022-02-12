@@ -7,9 +7,11 @@ class Item < ApplicationRecord
   has_many :item_commetns
   belongs_to :customer
   belongs_to :genre
+  belongs_to :relationship
   has_many :order_details
   
   enum is_active: { 販売中: true, 販売停止中: false}
+  
   
   def with_tax_price
     (price * 1.1).floor

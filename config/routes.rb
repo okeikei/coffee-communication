@@ -16,15 +16,17 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
  namespace :customer do
-  resources :relationships, only: [:create, :destroy]
+  resources :relationships, only: [:index, :show, :create, :destroy]
   resources :items
   resources :sell_items
  end
+ 
+ get "/relationships/follower" => "customer/relationships#follower", as: 'followers'
   
   root to: 'customer/homes#top'
   get "/home/about" => "customer/homes#about"
-  
-  
+   
+  get "/item/search" => "customer/items#search"
 
   # get "/item/new" => "customer/items#new"
   # get "/item/index" => "customer/items#index"
@@ -46,6 +48,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   patch "/customer" => "customer/customers#update"
   get "/customer/unsubscribe" => "customer/customers#unsubscribe"
   patch "/customer/withdraw" => "customer/customers#withdraw"
+  get "/customer/:id/follow" => "customer/customers#follow", as: 'customer_followes'
+  get "/custome/:id/follower" => "customer/customers#follower", as: 'customer_followers'
   
   get "/addresses" => "customer/addresses#index"
   get "/address/:id/edit" => "customer/addresses#edit", as: 'adderess_edit'

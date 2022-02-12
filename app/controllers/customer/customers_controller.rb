@@ -6,11 +6,23 @@ class Customer::CustomersController < ApplicationController
     
   def index
     @customers = Customer.all
+    @customers = Customer.all.order(rank_point: :desc)
     @sell_items = current_customer.items
   end
   
   def register
     @customer = Customer.find(params[:id])
+    @sell_items = @customer.items
+  end
+  
+  def follow
+    @customer = Customer.find(params[:id])
+    @customers = @customer.followings
+  end
+  
+  def follower
+    @customer = Customer.find(params[:id])
+    @customers = @customer.followers
   end
   
   def edit
@@ -37,7 +49,7 @@ class Customer::CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number)
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :image)
   end
   
   def reject_customer

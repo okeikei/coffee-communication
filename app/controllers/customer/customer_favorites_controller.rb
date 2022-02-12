@@ -1,5 +1,13 @@
 class Customer::CustomerFavoritesController < ApplicationController
     
+  def index
+    @customers = Customer.all
+  end
+  
+  def show
+    @customer = current_customer
+  end
+    
   def create
     following = current_customer.follow(@customer)
     if following.save
