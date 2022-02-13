@@ -17,8 +17,8 @@ class Item < ApplicationRecord
     (price * 1.1).floor
   end
   
-  def favorited_by?(item)
-    favorites.where(item_id: item.id).exists?
+  def favorited_by?(customer)
+    favorites.where(item_id: id).where(customer_id: customer.id).exists?
   end
   
 

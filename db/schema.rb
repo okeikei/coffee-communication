@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_08_130444) do
+ActiveRecord::Schema.define(version: 2022_02_12_085725) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "costomer_id", null: false
@@ -121,6 +121,11 @@ ActiveRecord::Schema.define(version: 2022_02_08_130444) do
     t.integer "total_payment", null: false
     t.integer "payment_method", null: false
     t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "payment_histories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

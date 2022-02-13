@@ -4,6 +4,12 @@
   <h4>支払方法</h4>
   <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
   <%= f.label :payment_method, Order.payment_methods_i18n[:クレジットカード] %></br>
+  <script
+    type="text/javascript"
+    src="https://checkout.pay.jp"
+    class="payjp-button"
+    data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>">
+  </script>
 
   <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
   <%= f.label :payment_method, Order.payment_methods_i18n[:銀行振込]%>

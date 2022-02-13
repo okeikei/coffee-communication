@@ -25,6 +25,12 @@ class Customer::CustomersController < ApplicationController
     @customers = @customer.followers
   end
   
+  def favorite
+    @item = Item.find(params[:id])
+    #@customers = @item.favorites
+    @favorites = @item.favorites
+  end
+  
   def edit
     @customer = current_customer
   end

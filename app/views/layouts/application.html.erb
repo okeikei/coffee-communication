@@ -92,7 +92,12 @@
               </div>
             </li>
 
-                
+            <li class="nav-item">
+              <%= form_with url: item_search_path, local: true, method: :get do |form| %>
+              <%= form.text_field :keyword %>
+              <%= form.submit "検索" %>
+              <% end %>
+            </li>  
             
             <% elsif admin_signed_in? %>
             <li class="nav-item">

@@ -73,3 +73,5 @@ gem 'pry-byebug'
 gem "enum_help"
 gem "nested_form"
 gem "rubocop"
+gem 'payjp'
+gem 'dotenv-rails'

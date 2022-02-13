@@ -23,6 +23,12 @@ class Customer::ItemCommentsController < ApplicationController
     redirect_to item_comment_index_path
   end
   
+  def destroy
+    item_comment = ItemComment.find(params[:id])
+    item_comment.destroy
+    redirect_toitem_comment_index_path
+  end
+  
   private
   def item_comment_params
     params.permit(:customer_id, :item_id, :comment, :rate)

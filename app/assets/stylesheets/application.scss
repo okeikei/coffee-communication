@@ -82,3 +82,12 @@ body {
 .gnavi a:hover::after {
     transform: scale(1, 1);/*X方向にスケール拡大*/
 }
+
+.col4 {
+  
+}
+
+.container {
+  display: flex;
+  align-content: space-between;
+}

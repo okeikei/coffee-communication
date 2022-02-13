@@ -1,7 +1,11 @@
 class Customer::FavoritesController < ApplicationController
+  
+  def show
+    @customers = customer.item_id
+  end
     
   def create
-    item = Item.find(params[:item_id])
+    item = Item.find(params[:id])
     favorite = item.favorites.new(item_id: item.id)
     favorite.customer_id = current_customer.id
     favorite.save
@@ -9,7 +13,7 @@ class Customer::FavoritesController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:item_id])
+    item = Item.find(params[:id])
     favorite = current_customer.favorites.find_by(item_id: item.id)
     favorite.destroy
     redirect_to customer_item_path(item)

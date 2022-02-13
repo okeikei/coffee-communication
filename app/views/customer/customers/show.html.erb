@@ -1,37 +1,65 @@
 <div class="">
  <div class="text-center">
   <p><%= attachment_image_tag @customer, :image, class: 'img-fluid customer-img' %></p>
-  <p>名前</p>
-  <p><%= @customer.full_name %></p>
+  <table class="table table-bordered">
+   <tbody>
+     <tr>
+       <th scope="row">name</th>
+       <td><%= @customer.full_name %></td>
+     </tr>
+     <tr>
+       <th scope="row">name_kana</th>
+       <td><%= @customer.full_name_kana %></td>
+     </tr>
+     <tr>
+       <th scope="row">email</th>
+       <td><%= @customer.email %></td>
+     </tr>
+     <tr>
+       <th scope="row">住所</th>
+       <td><%= @customer.full_address %></td>
+     </tr>
+     <tr>
+       <th scope="row">email</th>
+       <td><%= @customer.email %></td>
+     </tr>
+     <tr>
+       <th scope="row">電話番号</th>
+       <td><%= @customer.telephone_number %></td>
+     </tr>
+    </tbody>
+  </table>
   
-  <p>ナマエ</p>
-  <p><%= @customer.full_name_kana %></p>
+  <% if @customer.is_deleted == false %>
+  <table class="table table-bordered">
+   <tbody>
+     <tr>
+      <th scope="row"><%= link_to "編集", customer_edit_path(@customer), class: 'nav-link text-dark' %></th>
+     </tr>
+     <tr>
+      <th scope="row"><%= link_to "退会", customer_unsubscribe_path, class: 'nav-link text-dark' %></th>
+     </tr>
+     <tr>
+      <th scope="row"><%= link_to "配送先", adderess_index_path, class: 'nav-link text-dark' %></th>
+     </tr>
+     <tr>
+      <th scope="row"><%= link_to "注文履歴", order_index_path, class: 'nav-link text-dark' %></th>
+     </tr>
+     <tr>
+      <th scope="row"><%= link_to "投稿商品", customer_sell_items_path, class: 'nav-link text-dark' %></th>
+     </tr>
+    </tbody>
+  </table>
   
-  <p>email</p>
-  <p><%= @customer.email %></p>
-  
-  <p>住所</p>
-  <p><%= @customer.full_address %></p>
-  
-  <p>電話番号</p>
-  <p><%= @customer.telephone_number %></p>
-  
-  
-<% if @customer.is_deleted == false %>
-  <%= link_to "編集", customer_edit_path, class: 'nav-link text-dark' %>
- 
-  <%= link_to "退会", customer_unsubscribe_path, class: 'nav-link text-dark' %>
-  
-  <%= link_to "配送先", addresses_path, class: 'nav-link text-dark' %>
-  
-  <%= link_to "注文履歴", order_index_path, class: 'nav-link text-dark' %>
-  
-  <%= link_to "投稿商品", customer_sell_items_path, class: 'nav-link text-dark' %>
-  
-  <%= link_to "フォロー", customer_followes_path(@customer), class: 'nav-link text-dark' %>
-  
-  <%= link_to "フォロワー", customer_followers_path(@customer), class: 'nav-link text-dark' %>
-  
+  <table class="table table-bordered">
+   <tbody>
+     <tr>
+      <th scope="row"><%= link_to "フォロー", customer_followes_path(@customer), class: 'nav-link text-dark' %></th>
+      <td><%= link_to "フォロワー", customer_followers_path(@customer), class: 'nav-link text-dark' %></td>
+     </tr>
+    </tbody>
+  </table>
+
  <% end %>
  </div>
 </div>

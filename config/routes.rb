@@ -27,6 +27,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   get "/home/about" => "customer/homes#about"
    
   get "/item/search" => "customer/items#search"
+  get "/item/:id/favorite" => "customer/items#favorite", as: 'item_favorites'
 
   # get "/item/new" => "customer/items#new"
   # get "/item/index" => "customer/items#index"
@@ -37,21 +38,23 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   
 
   
-  get "/item_comments/show/:id" => "customer/item_comments#show", as: 'item_comment_show'
-  get "/item_comments/index/:id" => "customer/item_comments#index", as: 'item_comment_index'
-  post "/item_comments/create/:id" => "customer/item_comments#create", as: 'item_comment_create'
+  get "/item_comments/:id/show" => "customer/item_comments#show", as: 'item_comment_show'
+  get "/item_comments/:id/index" => "customer/item_comments#index", as: 'item_comment_index'
+  post "/item_comments/:id/create" => "customer/item_comments#create", as: 'item_comment_create'
+  delete "/item_comments/:id/destroy" => "customer/item_comments#destroy", as: 'item_comment_destroy'
   
   get "/customer/show" => "customer/customers#show"
   get "/customer/index" => "customer/customers#index"
   get "/customer/:id" => "customer/customers#register", as: 'customer_register'
-  get "/customer/edit" => "customer/customers#edit"
+  get "/customer/:id/edit" => "customer/customers#edit", as: 'customer_edit'
   patch "/customer" => "customer/customers#update"
   get "/customer/unsubscribe" => "customer/customers#unsubscribe"
   patch "/customer/withdraw" => "customer/customers#withdraw"
   get "/customer/:id/follow" => "customer/customers#follow", as: 'customer_followes'
-  get "/custome/:id/follower" => "customer/customers#follower", as: 'customer_followers'
+  get "/customer/:id/follower" => "customer/customers#follower", as: 'customer_followers'
+  get "/customer/:id/favorite" => "customer/customers#favorite", as: 'customer_favorites'
   
-  get "/addresses" => "customer/addresses#index"
+  get "/addresses" => "customer/addresses#index", as: 'adderess_index'
   get "/address/:id/edit" => "customer/addresses#edit", as: 'adderess_edit'
   post "/addresses" => "customer/addresses#create", as: 'adderess_create'
   patch "/address/:id" => "customer/addresses#update", as: 'adderess_update'
@@ -70,8 +73,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   get "/orders" => "customer/orders#index", as: 'order_index'
   get "/order/:id" => "customer/orders#show", as: 'order_show'
   
-  post "/favorites/:item_id" => "customer/favorites#create", as: 'favorite_create'
-  delete "/favorites" => "customer/favorites#destroy", as: 'favorite_destroy'
+  get "/favorites/:id" => "customer/favorites#show", as: 'favorite_show'
+  post "/favorites/:id/create" => "customer/favorites#create", as: 'favorite_create'
+  delete "/favorites/:id/destroy" => "customer/favorites#destroy", as: 'favorite_destroy'
   
   
 #namespaceをつけるとURLに名前を付けることができる
