@@ -1,4 +1,4 @@
-## NFT Creaters
+## Creaters Base
 
 ## サイト概要
 クリエイターが制作した芸術作品を売買できる専用サイト
