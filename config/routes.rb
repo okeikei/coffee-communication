@@ -47,7 +47,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   get "/customer/index" => "customer/customers#index"
   get "/customer/:id" => "customer/customers#register", as: 'customer_register'
   get "/customer/:id/edit" => "customer/customers#edit", as: 'customer_edit'
-  patch "/customer" => "customer/customers#update"
+  patch "/customer/:id/update" => "customer/customers#update", as: 'customer_update'
   get "/customer/unsubscribe" => "customer/customers#unsubscribe"
   patch "/customer/withdraw" => "customer/customers#withdraw"
   get "/customer/:id/follow" => "customer/customers#follow", as: 'customer_followes'

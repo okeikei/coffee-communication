@@ -1,37 +1,45 @@
 <div class="container">
+ 
   <div class="item"><%= link_to "全て削除", cart_items_all_destroy_path, method: :delete, class: 'nav-link text-dark' %></div>
 </div>
 <div class="container">
  <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
-  <div class="item">単価(税込)</div>
-  <div class="item">小計</div>
   <div class="item"><% @total_payment = 0 %></div>
   </div>
 </div>
-
 <% @cart_items.each do |cart_item| %>
-<div class="container">
- <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
-  <div class="item"><%= cart_item.item.name %></div>
- </div>
- <div class="container">
-  <div class="item">商品単価<%= cart_item.item.price %>円</div>
- </div>
- <div class="container">
-  <div class="item">単価（税込）<%= cart_item.item.with_tax_price %>円</div>
- </div>
- <div class="container">
-  <div class="item">小計<%= cart_item.subtotal %>円</div>
- </div>
+<table class="table caption-top">
+  <thead>
+    <tr>
+      <th scope="col">商品名</th>
+      <th scope="col">商品単価</th>
+      <th scope="col">単価（税込）</th>
+      <th scope="col">小計</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><%= cart_item.item.name %></th>
+      <td>商品単価<%= cart_item.item.price %>円</td>
+      <td><%= cart_item.item.with_tax_price %>円</td>
+      <td>小計<%= cart_item.subtotal %>円</td>
+      <td><%= link_to "削除", cart_items_destroy_path(cart_item), method: :delete, class: 'nav-link text-dark' %></td>
+    </tr>
+     <%= form_with model:cart_item, url: "/cart_item/#{cart_item.id}", method: :patch, local:true do |f| %>
+   
+  <% end %>
+  <% end %>
+   </tbody>
+ </table>
+<table class="table">
+<% @cart_items.each do |cart_item| %>
  <div class="container">
   <div class="item"><% @total_payment += cart_item.subtotal %></div>
 </div>
 </div>
+</tbody>
  <div class="container">
    <%= form_with model:cart_item, url: "/cart_item/#{cart_item.id}", method: :patch, local:true do |f| %>
-  
-
-  <div class="item"><%= link_to "削除", cart_items_destroy_path(cart_item), method: :delete, class: 'nav-link text-dark' %></div>
 </div>
 <% end %>
 <% end %>
