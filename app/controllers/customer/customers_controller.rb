@@ -1,4 +1,5 @@
 class Customer::CustomersController < ApplicationController
+  before_action :authenticate_customer!
   
   def show
     @customer = current_customer
@@ -8,6 +9,10 @@ class Customer::CustomersController < ApplicationController
     @customers = Customer.all
     @customers = Customer.all.order(rank_point: :desc)
     @sell_items = current_customer.items
+  end
+  
+  def unsubscribe
+    @customer = current_customer
   end
   
   def register
@@ -41,12 +46,8 @@ class Customer::CustomersController < ApplicationController
     redirect_to customer_show_path
   end
   
-  def unsubscribe
-    @customer = current_customer
-  end
-  
   def withdraw
-    current_customer.update(is_deleted: true)
+    current_customer.destroy
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path
@@ -61,7 +62,7 @@ class Customer::CustomersController < ApplicationController
   def reject_customer
     @customer = Customer.find_by(email: params[:customer][:email])
     if @customer
-      if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted)
+      if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == true)
         flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
         redirect_to new_customer_registration
       else

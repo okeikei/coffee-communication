@@ -1,4 +1,5 @@
 class Customer::CustomerFavoritesController < ApplicationController
+  before_action :authenticate_customer!
     
   def index
     @customers = Customer.all

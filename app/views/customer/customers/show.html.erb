@@ -30,7 +30,7 @@
     </tbody>
   </table>
   
-  <% if @customer.is_deleted == false %>
+  <% if @customer.paranoia_destroyed? == false %>
   <table class="table table-bordered">
    <tbody>
      <tr>

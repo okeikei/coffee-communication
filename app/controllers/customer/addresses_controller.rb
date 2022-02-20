@@ -1,10 +1,10 @@
 class Customer::AddressesController < ApplicationController
-  
+  before_action :authenticate_customer!
 
   def create
     @address = current_customer.addresses.new(address_params)
     @address.save!
-    redirect_to addresses_path
+    redirect_to adderess_index_path
   end
 
   def index
@@ -19,14 +19,14 @@ class Customer::AddressesController < ApplicationController
   def update
     @address = Address.find(params[:id])
     @address.update(address_params)
-    redirect_to addresses_path
+    redirect_to adderess_index_path
   end
   
   def destroy
     address = Address.find(params[:id])
     address.destroy
     flash[:notice]="Book was successfully destroyed."
-    redirect_to addresses_path
+    redirect_to adderess_index_path
   end
   
   private

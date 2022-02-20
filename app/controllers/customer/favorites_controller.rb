@@ -1,5 +1,7 @@
 class Customer::FavoritesController < ApplicationController
   
+  before_action :authenticate_customer!
+  
   def show
     @customers = customer.item_id
   end

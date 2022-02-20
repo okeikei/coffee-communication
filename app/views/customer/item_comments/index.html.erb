@@ -15,7 +15,7 @@
         <p>
           投稿日：<%= item_comment.created_at.strftime('%Y/%m/%d') %> |
             <% if item_comment.customer == current_customer %>
-              <%= link_to item_comment_index_path(item_comment.item, item_comment), method: :delete, class: "btn btn-sm btn-danger" do %>
+              <%= link_to item_comment_destroy_path(item_comment), method: :delete, class: "btn btn-sm btn-danger" do %>
                 コメント削除 <i class="fas fa-trash"></i>
               <% end %>
             <% end %>

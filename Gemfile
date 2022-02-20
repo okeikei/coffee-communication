@@ -75,3 +75,4 @@ gem "nested_form"
 gem "rubocop"
 gem 'payjp'
 gem 'dotenv-rails'
+gem 'paranoia'

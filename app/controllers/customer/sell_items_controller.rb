@@ -3,7 +3,7 @@ class Customer::SellItemsController < ApplicationController
   before_action :authenticate_customer!
     
   def index
-    @sell_items = current_customer.items
+    @items = current_customer.items
   end 
    
   def new
@@ -35,7 +35,7 @@ class Customer::SellItemsController < ApplicationController
   
   private
   def item_params
-    params.require(:item).permit(:name, :image, :introduction, :genre_id, :price, :is_active)
+    params.require(:item).permit(:name, :image, :introduction, :genre_id, :price, :is_active, :customer_id)
   end
   
 end

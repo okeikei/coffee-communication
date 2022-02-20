@@ -1,4 +1,5 @@
 class Customer::OrderDetailsController < ApplicationController
+ before_action :authenticate_customer!
     
   def update
    @order_details = OrderDetail.find(params[:id])

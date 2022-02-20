@@ -168,6 +168,8 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.21.0)
+    paranoia (2.5.2)
+      activerecord (>= 5.1, < 7.1)
     parser (3.1.0.0)
       ast (~> 2.4.1)
     payjp (0.0.8)
@@ -332,6 +334,7 @@ DEPENDENCIES
   kaminari (~> 1.2.1)
   listen (>= 3.0.5, < 3.2)
   nested_form
+  paranoia
   payjp
   pry-byebug
   pry-rails

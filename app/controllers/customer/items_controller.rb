@@ -53,6 +53,12 @@ class Customer::ItemsController < ApplicationController
     end
   end
 
+  def destroy
+  cart_items = CartItem.find(params[:id])
+  cart_items.destroy
+  flash[:notice]="Book was successfully destroyed."
+  redirect_to cart_items_path
+  end
   
   # def edit
   #   # @item = Item.where(customer_id: params[:id])

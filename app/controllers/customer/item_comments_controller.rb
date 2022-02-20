@@ -1,5 +1,5 @@
 class Customer::ItemCommentsController < ApplicationController
-  
+  before_action :authenticate_customer!
     
   def index
     @item_comments = ItemComment.where(item_id: params[:id])
@@ -25,8 +25,9 @@ class Customer::ItemCommentsController < ApplicationController
   
   def destroy
     item_comment = ItemComment.find(params[:id])
+    item_id = item_comment.item_id
     item_comment.destroy
-    redirect_toitem_comment_index_path
+    redirect_to item_comment_index_path(item_id)
   end
   
   private

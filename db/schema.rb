@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_12_085725) do
+ActiveRecord::Schema.define(version: 2022_02_20_090618) do
 
   create_table "addresses", force: :cascade do |t|
-    t.integer "costomer_id", null: false
     t.string "name", null: false
     t.string "postal_code", null: false
     t.string "address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "customer_id"
   end
 
   create_table "admins", force: :cascade do |t|
@@ -61,10 +61,11 @@ ActiveRecord::Schema.define(version: 2022_02_12_085725) do
     t.string "postal_code", null: false
     t.string "address", null: false
     t.string "telephone_number", null: false
-    t.boolean "is_deleted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_id"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_customers_on_deleted_at"
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
@@ -123,6 +124,7 @@ ActiveRecord::Schema.define(version: 2022_02_12_085725) do
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "item_id"
   end
 
   create_table "payment_histories", force: :cascade do |t|
@@ -138,21 +140,6 @@ ActiveRecord::Schema.define(version: 2022_02_12_085725) do
     t.index ["customer_id", "follow_id"], name: "index_relationships_on_customer_id_and_follow_id", unique: true
     t.index ["customer_id"], name: "index_relationships_on_customer_id"
     t.index ["follow_id"], name: "index_relationships_on_follow_id"
-  end
-
-  create_table "sell_items", force: :cascade do |t|
-    t.string "image_id"
-    t.text "introduction"
-    t.integer "price"
-    t.integer "name"
-    t.integer "item_id"
-    t.integer "customer_id"
-    t.integer "amount"
-    t.integer "genre_id"
-    t.integer "status"
-    t.boolean "is_active", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

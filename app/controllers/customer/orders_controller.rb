@@ -28,6 +28,10 @@ class Customer::OrdersController < ApplicationController
     order_detail.amount = cart_item.amount
     order_detail.making_status = 0
     order_detail.save
+    @item = Item.find(cart_item.item_id)
+    @item.is_active = "販売停止中"
+    @item.save
+    #@item.update(is_active: false)
   end
   current_customer.cart_items.destroy_all
   redirect_to orders_complete_path
@@ -72,6 +76,6 @@ class Customer::OrdersController < ApplicationController
     
   private
    def order_params
-    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :total_payment, order_details_attributes: [:id, :order_id, :item_id, :price, :amount])
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :total_payment, :item_id, order_details_attributes: [:id, :order_id, :item_id, :price, :amount])
    end
 end
