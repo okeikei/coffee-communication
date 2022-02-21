@@ -8,12 +8,7 @@
     class="payjp-button"
     data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>">
   </script></br>
-  <script
-    type="text/javascript"
-    src="https://checkout.pay.jp"
-    class="payjp-button"
-    data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>">
-  </script>
+
 
   <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
   <%= f.label :payment_method, Order.payment_methods_i18n[:銀行振込]%>

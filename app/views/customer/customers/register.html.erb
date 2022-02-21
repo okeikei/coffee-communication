@@ -1,9 +1,16 @@
-<p>名前</p>
+<div class="container">
+ <div class="row">
+<p>名前</p>：
   <p><%= @customer.full_name %></p>
-  
-  <p>ナマエ</p>
+ </div>
+</div>
+<div class="container">
+ <div class="row">
+  <p>ナマエ</p>：
   <p><%= @customer.full_name_kana %></p>
-  
+  </div>
+ </div>
+    
 <div class="container">
  <div class="row">
   <% @sell_items.each do |sell_item| %>
@@ -25,7 +32,27 @@
      </div>
     </div>
    </div>
-   
+                
   <% end %>
- </div>
-</div>
+   <%= form_with model:@customer_review, url: customer_review_create_path(@customer), method: :post, local: true do |f| %>
+     <%= f.text_area :comment, rows:'5', placeholder: "クリエーターの評価", class: "form-control form-control-sm" %>
+     <div class="form-group row" id="rating-form"> <%#id要素の付与がポイント%>
+      <%= f.label :rate,'評価', class:'star-title' %>　<%#保存したいカラムの指定%>
+      <%= f.hidden_field :rate, :value => 'score' %>
+     </div>
+     <%= f.submit "投稿する" %>
+     <%= link_to customer_review_index_path do %>
+        <p>コメント一覧</p>
+    <% end %>
+    <% end %>
+      <script>
+       $('#rating-form').raty({
+       starOn: "<%= asset_path('star-on.png') %>",
+       starOff: "<%= asset_path('star-off.png') %>",
+       starHalf: '<%= asset_path('star-half.png') %>',
+       half: true, 
+       scoreName: 'item_comment[rate]'
+       });
+      </script>
+    </div>
+   </div>

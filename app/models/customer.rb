@@ -17,6 +17,8 @@ class Customer < ApplicationRecord
   
   has_many :item_commetns
   
+  has_many :customer_reviews
+  
   has_many :favorites, dependent: :destroy
   has_many :favorite_posts, through: :favorites, source: :post
   

@@ -38,6 +38,11 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   
 
   
+  get "/customer_reviews/:id/show" => "customer/customer_reviews#show", as: 'customer_review_show'
+  get "/customer_reviews/:id/index" => "customer/customer_reviews#index", as: 'customer_review_index'
+  post "/customer_reviews/:id/create" => "customer/customer_reviews#create", as: 'customer_review_create'
+  delete "/customer_reviews/:id/destroy" => "customer/customer_reviews#destroy", as: 'customer_review_destroy'
+  
   get "/item_comments/:id/show" => "customer/item_comments#show", as: 'item_comment_show'
   get "/item_comments/:id/index" => "customer/item_comments#index", as: 'item_comment_index'
   post "/item_comments/:id/create" => "customer/item_comments#create", as: 'item_comment_create'
