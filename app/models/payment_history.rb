@@ -1,5 +1,5 @@
 class PaymentHistory < ApplicationRecord
-    
+
     # == Schema Information
 #
 # Table name: orders
@@ -18,14 +18,12 @@ class PaymentHistory < ApplicationRecord
 #
 #  index_orders_on_user_id  (user_id)
 
-class PaymentHistory
-  belongs_to :user
+  # belongs_to :user
 
   enum status: {
     before_payment: 0, # 未決済
     completed: 1, # 決済完了
     failed: 2, # 決済失敗
   }
-end
-    
+
 end
