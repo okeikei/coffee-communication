@@ -50,35 +50,35 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-              
+
             <% if customer_signed_in? %>
-    　　　　
+
             <!--<li class="nav-item">-->
-            <!--  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>-->
+            <!--  <%#= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>-->
             <!--</li>-->
             <!--<li class="nav-item">-->
-            <!--  <%= link_to "マイページ", customer_show_path, class: 'nav-link text-dark' %>-->
+            <!--  <%#= link_to "マイページ", customer_show_path, class: 'nav-link text-dark' %>-->
             <!--</li>-->
             <!--<li class="nav-item">-->
-            <!--  <%= link_to '商品投稿フォーム', new_customer_item_path, class: 'nav-link text-dark' %>-->
+            <!--  <%#= link_to '商品投稿フォーム', new_customer_item_path, class: 'nav-link text-dark' %>-->
             <!--</li>-->
-            
+
             <li class="nav-item">
               <%= link_to "商品一覧", customer_items_path, class: 'nav-link text-dark' %>
             </li>
-            
+
             <li class="nav-item">
               <%= link_to "カート一覧", cart_items_path, class: 'nav-link text-dark' %>
             </li>
-            
+
             <li class="nav-item">
               <%= link_to "ユーザー一覧", customer_index_path, class: 'nav-link text-dark' %>
             </li>
-            
+
             <li class="nav-item">
               <%= link_to "TOP", root_path, class: 'nav-link text-dark' %>
             </li>
-            
+
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <%= "#{current_customer.first_name} さん" %>
@@ -86,7 +86,7 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <%= link_to "マイページ", customer_show_path, class: 'dropdown-item' %>
                 <%= link_to '商品投稿フォーム', new_customer_sell_item_path, class: 'dropdown-item' %>
-                
+
                 <div class="dropdown-divider"></div>
                 <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'dropdown-item' %>
               </div>
@@ -97,8 +97,8 @@
               <%= form.text_field :keyword %>
               <%= form.submit "検索" %>
               <% end %>
-            </li>  
-            
+            </li>
+
             <% elsif admin_signed_in? %>
             <li class="nav-item">
               <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
@@ -112,7 +112,7 @@
             <li class="nav-item">
               <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-dark' %>
             </li>
-        
+
             <% else %>
             <li class="nav-item">
               <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark' %>
@@ -137,13 +137,13 @@
     </main>
     <footer class="bg-dark text-white py-2 fixed-bottom">
       <!--<li class="nav-item">-->
-      <!--        <%= link_to "ユーザー一覧", customer_index_path, class: 'nav-link text-blue' %>-->
+      <!--        <%#= link_to "ユーザー一覧", customer_index_path, class: 'nav-link text-blue' %>-->
       <!--      </li>-->
       <!--<div class="container">-->
       <!--  <div class="row no-gutters">-->
       <!--    <div class="col-md-4">-->
-      <!--      <%= image_tag('Creaters Base') %>-->
-      
+      <!--      <%#= image_tag('Creaters Base') %>-->
+
       <!--  </div>-->
       <!--</div>-->
       <div class="text-center">
