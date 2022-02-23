@@ -1,44 +1,42 @@
 <div class="container">
   <div class="row">
     <% @customers.each do |customer| %>
-    <% if customer.paranoia_destroyed? == false %>
-    <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
-      <div class="card shadow card-org">
-        <div class="bg-white">
-          <%= link_to customer_register_path(customer.id) do %>
-          <%= attachment_image_tag customer, :image, class: 'img-fluid customer-img' %>
-            <div class="card-body">
-            <h5 class="card-title"><%= customer.full_name %></h5>
-            <div class="card-text">
-          <% end %>
-          <% end %>
-            <%= link_to customer_followes_path(customer) do %>
-              <p>フォロー数：<%= customer.followings.count %> </p>
-            <% end %>
-            <%= link_to customer_followers_path(customer) do %>
-              <p>フォロワー数：<%= customer.followers.count %> </p>
-            <% end %>
-          
-            <% unless current_customer == customer %>
-              <% if current_customer.following?(customer) %>
-                <%= form_with url: customer_relationship_path(customer), method: :delete, local:true do |f| %>
-                  <%= hidden_field_tag :follow_id, customer.id %>
-                  <%= f.submit 'Unfollow', class: 'btn btn-danger btn-sm' %>
-                <% end %>
-              <% else %>
-                <%= form_with url: customer_relationships_path , local:true do |f| %>
-                  <%= hidden_field_tag :follow_id, customer.id %>
-                  <%= f.submit 'Follow', class: 'btn btn-primary btn-sm' %>
-                <% end %>
+      <% if customer.paranoia_destroyed? == false %>
+        <div class="col-4 mb-3">
+          <div class="card shadow card-org">
+            <div class="bg-white">
+              <%= link_to customer_register_path(customer.id) do %>
+                <%= attachment_image_tag customer, :image, class: 'img-fluid customer-img' %>
               <% end %>
-             <% end %>
-             
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><%= customer.full_name %></h5>
+              <div class="card-text">
+                <%= link_to customer_followes_path(customer) do %>
+                  <p>フォロー数：<%= customer.followings.count %> </p>
+                <% end %>
+                <%= link_to customer_followers_path(customer) do %>
+                  <p>フォロワー数：<%= customer.followers.count %> </p>
+                <% end %>
 
+                <% unless current_customer == customer %>
+                  <% if current_customer.following?(customer) %>
+                    <%= form_with url: customer_relationship_path(customer), method: :delete, local:true do |f| %>
+                      <%= hidden_field_tag :follow_id, customer.id %>
+                      <%= f.submit 'Unfollow', class: 'btn btn-danger btn-sm' %>
+                    <% end %>
+                  <% else %>
+                    <%= form_with url: customer_relationships_path , local:true do |f| %>
+                      <%= hidden_field_tag :follow_id, customer.id %>
+                      <%= f.submit 'Follow', class: 'btn btn-primary btn-sm' %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
-            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      <% end %>
     <% end %>
   </div>
 </div>
