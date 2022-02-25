@@ -12,6 +12,7 @@ class Customer::OrdersController < ApplicationController
  end
 
  def show
+  @orders = current_customer.orders
   @order = Order.find(params[:id])
   @order_details = @order.order_details
  end

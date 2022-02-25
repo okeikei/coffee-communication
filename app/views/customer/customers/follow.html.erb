@@ -1,20 +1,4 @@
 <div class="container">
-  <h1>フォロー一覧</h1>
-  <div class="row">
-    <% @customers.each do |customer| %>
-    <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
-      <div class="card shadow card-org">
-        <div class="bg-white">
-          <%= link_to customer_register_path(customer.id) do %>
-            <div class="card-body">
-            <h5 class="card-title"><%= customer.full_name %></h5>
-            <div class="card-text">
-          <% end %>
-                </div>
-            </div>
-        </div>
-      </div>
-    </div>
-    <% end %>
-  </div>
+  <h1><%= "#{current_customer.first_name} さんのフォロー一覧" %></h1>
+  <%= render 'customer/customers/follow', customers: @customers %>
 </div>
