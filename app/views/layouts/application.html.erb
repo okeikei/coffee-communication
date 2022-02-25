@@ -49,16 +49,6 @@
 
             <% if customer_signed_in? %>
 
-            <!--<li class="nav-item">-->
-            <!--  <%#= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>-->
-            <!--</li>-->
-            <!--<li class="nav-item">-->
-            <!--  <%#= link_to "マイページ", customer_show_path, class: 'nav-link text-dark' %>-->
-            <!--</li>-->
-            <!--<li class="nav-item">-->
-            <!--  <%#= link_to '商品投稿フォーム', new_customer_item_path, class: 'nav-link text-dark' %>-->
-            <!--</li>-->
-
             <li class="nav-item">
               <%= link_to "商品一覧", customer_items_path, class: 'nav-link text-dark' %>
             </li>
@@ -90,7 +80,7 @@
 
             <li class="nav-item">
               <%= form_with url: item_search_path, local: true, method: :get do |form| %>
-              <%= form.text_field :keyword %>
+              <%= form.text_field :keyword, placeholder: "ジャンルを入力" %>
               <%= form.submit "検索" %>
               <% end %>
             </li>
@@ -132,15 +122,6 @@
     <%= yield %>
     </main>
     <footer class="bg-dark text-white py-2 fixed-bottom">
-      <!--<li class="nav-item">-->
-      <!--        <%#= link_to "ユーザー一覧", customer_index_path, class: 'nav-link text-blue' %>-->
-      <!--      </li>-->
-      <!--<div class="container">-->
-      <!--  <div class="row no-gutters">-->
-      <!--    <div class="col-md-4">-->
-      <!--      <%#= image_tag('Creaters Base') %>-->
-      <!--  </div>-->
-      <!--</div>-->
       <div class="text-center">
         <small>Copyright &copy; 2022 NFT Creators. All Rights Reserved.</small>
       </div>

@@ -1,4 +1,10 @@
 <div class="container">
+  <%= form_with url: item_search_path, local: true, method: :get do |form| %>
+  <%= form.text_field :keyword, placeholder: "ジャンルを入力" %>
+  <%= form.submit "検索" %>
+  <% end %>
+</div>
+<div class="container">
  <div class="row">
   <% items.each do |item| %>
   <% if item.is_active == "販売中" %>

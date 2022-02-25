@@ -7,7 +7,6 @@ class Customer::CustomersController < ApplicationController
 
   def index
     @customers = Customer.all
-    # @customers = Customer.all.order(rank_point: :desc)
     @sell_items = current_customer.items
   end
 

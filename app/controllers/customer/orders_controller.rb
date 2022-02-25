@@ -1,20 +1,21 @@
 class Customer::OrdersController < ApplicationController
  before_action :authenticate_customer!
- 
+
  def new
   @customer = current_customer
   @order = Order.new
+
  end
-    
+
  def index
   @orders = current_customer.orders
  end
-    
+
  def show
   @order = Order.find(params[:id])
   @order_details = @order.order_details
  end
-    
+
  def create
   @order = Order.new
   @order = current_customer.orders.build(order_params)
@@ -36,7 +37,7 @@ class Customer::OrdersController < ApplicationController
   current_customer.cart_items.destroy_all
   redirect_to orders_complete_path
  end
- 
+
  def comfirm
   @cart_items = current_customer.cart_items
   @order = Order.new
@@ -47,21 +48,21 @@ class Customer::OrdersController < ApplicationController
     @order.postal_code = current_customer.postal_code
     @order.address = current_customer.address
     @order.name = current_customer.full_name
-    
+
    elsif params[:order][:address_option] == "1"
     @address = Address.find(params[:order][:address_id])
     @order.postal_code = @address.postal_code
     @order.address = @address.address
     @order.name = @address.name
-    
+
    elsif params[:order][:address_option] == "2"
     @order.postal_code = params[:order][:postal_code]
     @order.address = params[:order][:address]
     @order.name = params[:order][:name]
    end
-   
+
  end
- 
+
  def pay
   Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
   Payjp::Charge.create(
@@ -70,10 +71,10 @@ class Customer::OrdersController < ApplicationController
     :currency => 'jpy'
   )
  end
- 
+
  def complete
  end
-    
+
   private
    def order_params
     params.require(:order).permit(:payment_method, :postal_code, :address, :name, :total_payment, :item_id, order_details_attributes: [:id, :order_id, :item_id, :price, :amount])
