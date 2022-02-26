@@ -1,3 +1,4 @@
+<div class="container">
 <h1>注文情報確認</h1>
 <% @total_payment = 0 %>
 <% @cart_items.each do |cart_item| %>
@@ -26,3 +27,4 @@
 <%= f.hidden_field :total_payment, :value => @total_payment %>
 </br><%= f.submit '注文を確定する' %>
 <% end %>
+</div>

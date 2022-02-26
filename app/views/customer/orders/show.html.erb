@@ -1,5 +1,6 @@
 <div class="container">
 <div>
+ <% if @customer == current_customer %>
  <p>アイテム名：<%= @order.name %></p>
  <p>購入日時：<%= @order.updated_at %></p>
  <p>配送先：<%= @order.full_address %></p>
@@ -18,12 +19,14 @@
 <div>
  <p>商品合計：<%= @total_payment %>円</p>
  <p>請求金額合計：<%= @order.total_payment %>円</p>
- 
- <!--<p>製作ステータス</p>-->
- <!-- <%= form_with model: @order_details, url: admin_order_detail_path(@order_details), method: :patch, local:true do |f| %>-->
- <!-- <%= f.select :making_status, OrderDetail.making_statuses.keys.to_a %>-->
- <!-- <%= f.submit "変更を保存" %><br>-->
- <!--<% end %>-->
 
+ <p>製作ステータス</p>
+  <%= form_with model: @order_details, url: admin_order_detail_path(@order_details), method: :patch, local:true do |f| %>
+  <%= f.select :making_status, OrderDetail.making_statuses.keys.to_a %>
+  <%= f.submit "変更を保存" %><br>
+ <% end %>
+<% else %>
+<h1>ほかのユーザー情報の為編集不可</h1>
+<% end %>
 </div>
 </div>

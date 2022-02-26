@@ -76,4 +76,5 @@ if Rails.env.development?
     key: key_file.to_path,
     cert: cert_file.to_path
   }
+
 end
