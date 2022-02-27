@@ -1,0 +1,11 @@
+.row
+  .col-sm-12.col-md-8.col-lg-5.px-5.px-sm-0.mx-auto
+    = attachment_image_tag @sell_item, :image
+    %p
+      アイテム名：#{@sell_item.name}
+    %p
+      説明：#{@sell_item.introduction}
+    %p
+      ジャンル：#{@sell_item.genre.name}
+    %p
+      税抜金額：#{@sell_item.price}

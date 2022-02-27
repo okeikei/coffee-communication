@@ -1,0 +1,10 @@
+.container
+  .row
+    - @customers.each do |customer|
+      .col-12.col-sm-12.col-md-6.col-lg-4.mb-3
+        .card.shadow.card-org
+          .bg-white
+            = link_to customer_register_path(customer.id) do
+              .card-body
+                %h5.card-title= customer.full_name
+                .card-text

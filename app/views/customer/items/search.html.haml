@@ -1,0 +1,4 @@
+- if @keyword != nil
+  %h2
+    検索結果 "#{@keyword.name}"
+= render 'customer/items/list', items: @items

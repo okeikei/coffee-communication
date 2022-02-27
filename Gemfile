@@ -80,3 +80,8 @@ gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
+gem 'ethereum.rb'
+gem "gmaps4rails"
+gem "geocoder"
+gem "gon"
+gem 'haml-rails'

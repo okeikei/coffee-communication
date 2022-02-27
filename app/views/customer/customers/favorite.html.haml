@@ -1,0 +1,11 @@
+.container
+  .row
+    - @favorites.each do |favorite|
+      .col-12.col-sm-12.col-md-6.col-lg-4.mb-3
+        .card.shadow.card-org
+          .bg-white
+            .card-body
+              %h5.card-title
+              %p
+                クリエイター名：#{favorite.customer.full_name}
+              .card-text

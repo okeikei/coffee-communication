@@ -1,0 +1,22 @@
+%p 名前
+%p= @customer.full_name
+%p ナマエ
+%p= @customer.full_name_kana
+.container
+  .row
+    - @sell_items.each do |sell_item|
+      .col-12.col-sm-12.col-md-6.col-lg-4.mb-3
+        .card.shadow.card-org
+          .bg-white
+            = attachment_image_tag sell_item, :image, class: 'img-fluid sell-item-img'
+          .card-body
+            %h5.card-title= sell_item.name
+            .card-text
+              %p
+                値段：#{sell_item.price}円
+              %p
+                ジャンル：#{sell_item.genre.name}
+              %p
+                販売ステータス：#{sell_item.is_active}
+              %p
+                製作者：#{sell_item.customer.full_name}

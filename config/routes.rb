@@ -36,7 +36,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   # post "/items" => "customer/items#create", as: 'item_create'
   # patch "/items" => "customer/items#update"
   
-
+  get "/gallery/index" => "customer/gallery#index", as: 'gallery_index'
   
   get "/customer_reviews/:id/show" => "customer/customer_reviews#show", as: 'customer_review_show'
   get "/customer_reviews/:id/index" => "customer/customer_reviews#index", as: 'customer_review_index'

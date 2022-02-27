@@ -1,0 +1,12 @@
+%h1 トップページ
+- @order.each do |order|
+  %div
+    %p
+      = link_to admin_order_path(order.id) do
+        注文商品：#{order.updated_at}
+      購入者：#{order.name}
+      - order_details = OrderDetail.where(order_id: order.id)
+      - count = 0
+      - order_details.each {|order_detail| count += order_detail.amount}
+      個数: #{count}
+      注文ステータス:#{order.status}

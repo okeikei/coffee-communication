@@ -1,0 +1,82 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title NFT Creators
+    = csrf_meta_tags
+    = csp_meta_tag
+    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1", :name => "viewport"}/
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    %header.shadow-sm
+      %nav.navbar.navbar-expand-lg.navbar-light.bg-white.navbar-bg.fixed-top
+        .container
+          - if customer_signed_in?
+            .d-flex.text-center.gnavi
+              %a.navbar-brand.py-3{:href => "/"}
+                %h1.logo
+                  NFT Creators
+                  %span.d-block.sub-title All For Creators
+          - elsif admin_signed_in?
+            .d-flex.text-center.gnavi
+              %a.navbar-brand.py-3{:href => "/"}
+                %h1.logo
+                  NFT Creators
+                  %span.d-block.sub-title All For Creators
+          - else
+            .d-flex.text-center.gnavi
+              %a.navbar-brand.py-3{:href => "/"}
+                %h1.logo
+                  NFT Creators
+                  %span.d-block.sub-title All For Creators
+          %button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavDropdown", "data-toggle" => "collapse", :type => "button"}
+            %span.navbar-toggler-icon
+          #navbarNavDropdown.collapse.navbar-collapse
+            %ul.navbar-nav.ml-auto
+              - if customer_signed_in?
+                %li.nav-item
+                  = link_to "商品一覧", customer_items_path, class: 'nav-link text-dark'
+                %li.nav-item
+                  = link_to "カート一覧", cart_items_path, class: 'nav-link text-dark'
+                %li.nav-item
+                  = link_to "ユーザー一覧", customer_index_path, class: 'nav-link text-dark'
+                %li.nav-item
+                  = link_to "ギャラリー一覧", gallery_index_path, class: 'nav-link text-dark'
+                %li.nav-item
+                  = link_to "TOP", root_path, class: 'nav-link text-dark'
+                %li.nav-item.dropdown
+                  %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                    = "#{current_customer.first_name} さん"
+                  .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+                    = link_to "マイページ", customer_show_path, class: 'dropdown-item'
+                    = link_to '商品投稿フォーム', new_customer_sell_item_path, class: 'dropdown-item'
+                    .dropdown-divider
+                    = link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'dropdown-item'
+                %li.nav-item
+                  = form_with url: item_search_path, local: true, method: :get do |form|
+                    = form.collection_select :genre, Genre.all, :id, :name
+                    = form.submit "ジャンル検索"
+              - elsif admin_signed_in?
+                %li.nav-item
+                  = link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark'
+                %li.nav-item
+                  = link_to "会員一覧", admin_customers_path, class: 'nav-link text-dark'
+                %li.nav-item
+                  = link_to 'ジャンル投稿フォーム', admin_genres_path, class: 'nav-link text-dark'
+                %li.nav-item
+                  = link_to "商品一覧", admin_items_path, class: 'nav-link text-dark'
+              - else
+                %li.nav-item
+                  = link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark'
+                %li.nav-item
+                  = link_to "会社概要", home_about_path, class: 'nav-link text-dark'
+                %li.nav-item
+                  = link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark'
+                %li.nav-item
+                  = link_to "商品一覧", customer_items_path, class: 'nav-link text-dark'
+    %main.mb-auto
+      = yield
+    %footer.bg-dark.text-white.py-2.fixed-bottom
+      .text-center
+        %small Copyright © 2022 NFT Creators. All Rights Reserved.

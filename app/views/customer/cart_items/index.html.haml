@@ -1,0 +1,51 @@
+.container
+  %h1 カート内一覧
+  .item= link_to "全て削除", cart_items_all_destroy_path, method: :delete, class: 'nav-link text-dark'
+.container
+  .col-12.col-sm-12.col-md-6.col-lg-4.mb-3
+    .item
+      - @total_payment = 0
+- @cart_items.each do |cart_item|
+  %table.table.caption-top
+    %thead
+      %tr
+        %th{:scope => "col"} 商品名
+        %th{:scope => "col"} 商品単価
+        %th{:scope => "col"} 単価（税込）
+        %th{:scope => "col"} 小計
+    %tbody
+      %tr
+        %th{:scope => "row"}= cart_item.item.name
+        %td
+          商品単価#{cart_item.item.price}円
+        %td
+          = cart_item.item.with_tax_price
+          円
+        %td
+          小計#{cart_item.subtotal}円
+        %td= link_to "削除", cart_items_destroy_path(cart_item), method: :delete, class: 'nav-link text-dark'
+      = form_with model:cart_item, url: "/cart_item/#{cart_item.id}", method: :patch, local:true do |f|
+  %table.table
+    - @cart_items.each do |cart_item|
+      .container
+        .item
+          - @total_payment += cart_item.subtotal
+      .container
+        = form_with model:cart_item, url: "/cart_item/#{cart_item.id}", method: :patch, local:true do |f|
+    .container
+      .col-12.col-sm-12.col-md-6.col-lg-4.mb-3
+        .item カート内合計
+    .container
+      .col-12.col-sm-12.col-md-6.col-lg-4.mb-3
+        .item
+          = @total_payment
+          円
+    .container
+      .col-12.col-sm-12.col-md-6.col-lg-4.mb-3
+        .item
+          - if @total_payment == 0
+            = link_to "買い物を続ける", customer_items_path, class: 'nav-link text-dark'
+        .item
+          - else
+            = link_to "買い物を続ける", customer_items_path, class: 'nav-link text-dark'
+            = link_to "情報入力へ進む", orders_new_path, class: 'nav-link text-dark'

@@ -1,0 +1,6 @@
+#target
+.map-btn
+  %input#address{:type => "textbox", :value => "#{@gallery.location}"}/
+  %input{:onclick => "codeAddress()", :type => "button", :value => "検索"}/
+  %div
+    %script{:async => "", :defer => "defer", :src => "https://maps.googleapis.com/maps/api/js?key=自分のAPIキー&callback=initMap"}

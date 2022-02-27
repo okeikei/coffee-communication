@@ -1,0 +1,44 @@
+.row
+  .col-sm-12.col-md-8.col-lg-5.px-5.px-sm-0.mx-auto
+    = attachment_image_tag @item, :image
+    %p
+      アイテム名：#{@item.name}
+    %p
+      説明：#{@item.introduction}
+    %p
+      ジャンル：#{@item.genre.name}
+    %p
+      税抜金額：#{@item.price}
+    %p
+      製作者：#{@item.customer.full_name}
+    = form_with model:@cart_items, url: cart_items_create_path, method: :post, local:true do |f|
+      = f.hidden_field :item_id, value: params[:id]
+      = f.select :amount, *[1..10]
+      = f.submit 'カートに入れる'
+    - if @item.favorited_by?(current_customer)
+      %p
+        = link_to favorite_destroy_path(@item), method: :delete do
+          ♥#{@item.favorites.count} いいね
+    - else
+      %p
+        = link_to favorite_create_path(@item), method: :post do
+          ♡#{@item.favorites.count} いいね
+    = form_with(model: @item_comment, url: item_comment_create_path(@item.id), method: :post, local: true) do |f|
+      = f.text_area :comment, rows:'5', placeholder: "商品のコメント", class: "form-control form-control-sm"
+      #rating-form.form-group.row
+        = f.label :rate,'評価', class:'star-title'
+        　
+        = f.hidden_field :rate, :value => 'score'
+      = f.submit "投稿する"
+      　  #{link_to item_comment_index_path do}
+        　
+        %p コメント一覧
+        　
+    :javascript
+      $('#rating-form').raty({
+          starOn: "#{asset_path('star-on.png')}",
+          starOff: "#{asset_path('star-off.png')}",
+          starHalf: '#{asset_path('star-half.png')}',
+          half: true, 
+          scoreName: 'item_comment[rate]'
+      });

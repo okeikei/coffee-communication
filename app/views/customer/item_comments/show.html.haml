@@ -1,0 +1,15 @@
+- item.item_comments.each do |item_comment|
+  .pt-2.px-2{:style => "background-color: #fffffe; border: 2px solid #272343; border-radius: 2px;"}
+    .review-rating{"data-score" => "#{item_comment.rate}"} 評価：
+    .text-left
+      %p
+        投稿者：#{item_comment.customer.full_name}
+      %p= item_comment.comment
+    .text-right
+      %p
+        投稿日：#{item_comment.created_at.strftime('%Y/%m/%d')} |
+        - if item_comment.customer == current_customer
+          = link_to item_comment_destroy_path(item_comment), method: :delete, class: "btn btn-sm btn-danger" do
+            コメント削除
+            %i.fas.fa-trash
+  .pb-2

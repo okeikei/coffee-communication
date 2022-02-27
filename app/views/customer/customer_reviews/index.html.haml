@@ -1,0 +1,20 @@
+- @customer_reviews.each do |customer_review|
+  .pt-2.px-2{:style => "background-color: #fffffe; border: 2px solid #272343; border-radius: 2px;"}
+    .review-rating
+      \&#x8A55;&#x4FA1;&#xFF1A;#{customer_review.rate}/5&#x70B9;
+      = succeed "," do
+        .detail-value
+      = customer_review.rate
+      "&gt;
+  .text-left
+    %p
+      \&#x6295;&#x7A3F;&#x8005;&#xFF1A;#{customer_review.customer.full_name}
+    %p= customer_review.comment
+  .text-right
+    %p
+      \&#x6295;&#x7A3F;&#x65E5;&#xFF1A;#{customer_review.created_at.strftime('%Y/%m/%d')} |
+      - if customer_review.customer == current_customer
+        = link_to customer_review_destroy_path(customer_review), method: :delete, class: btn btn-sm btn-danger do
+          \&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x524A;&#x9664;
+          %i.fas.fa-trash
+.pb-2

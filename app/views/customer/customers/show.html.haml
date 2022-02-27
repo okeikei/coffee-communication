@@ -1,0 +1,45 @@
+%div
+  %h1 マイページ
+  .text-center
+    %p= attachment_image_tag @customer, :image, class: 'img-fluid customer-img'
+    %table.table.table-bordered
+      %tbody
+        %tr
+          %th{:scope => "row"} name
+          %td= @customer.full_name
+        %tr
+          %th{:scope => "row"} name_kana
+          %td= @customer.full_name_kana
+        %tr
+          %th{:scope => "row"} email
+          %td= @customer.email
+        %tr
+          %th{:scope => "row"} 住所
+          %td= @customer.full_address
+        %tr
+          %th{:scope => "row"} email
+          %td= @customer.email
+        %tr
+          %th{:scope => "row"} 電話番号
+          %td= @customer.telephone_number
+        %tr
+          %th{:scope => "row"} 自己紹介
+          %td= @customer.introduction
+    - if @customer.paranoia_destroyed? == false
+      %table.table.table-bordered
+        %tbody
+          %tr
+            %th{:scope => "row"}= link_to "編集", customer_edit_path(@customer), class: 'nav-link text-dark'
+          %tr
+            %th{:scope => "row"}= link_to "退会", customer_unsubscribe_path, class: 'nav-link text-dark'
+          %tr
+            %th{:scope => "row"}= link_to "配送先", adderess_index_path, class: 'nav-link text-dark'
+          %tr
+            %th{:scope => "row"}= link_to "注文履歴", order_index_path, class: 'nav-link text-dark'
+          %tr
+            %th{:scope => "row"}= link_to "投稿商品", customer_sell_items_path, class: 'nav-link text-dark'
+      %table.table.table-bordered
+        %tbody
+          %tr
+            %th{:scope => "row"}= link_to "フォロー", customer_followes_path(@customer), class: 'nav-link text-dark'
+            %td= link_to "フォロワー", customer_followers_path(@customer), class: 'nav-link text-dark'

@@ -1,0 +1,20 @@
+- @item_comments.each do |item_comment|
+  .pt-2.px-2{:style => "background-color: #fffffe; border: 2px solid #272343; border-radius: 2px;"}
+    .review-rating
+      \&#x8A55;&#x4FA1;&#xFF1A;#{item_comment.rate}/5&#x70B9;
+      = succeed "," do
+        .detail-value
+      = item_comment.rate
+      "&gt;
+  .text-left
+    %p
+      \&#x6295;&#x7A3F;&#x8005;&#xFF1A;#{item_comment.customer.full_name}
+    %p= item_comment.comment
+  .text-right
+    %p
+      \&#x6295;&#x7A3F;&#x65E5;&#xFF1A;#{item_comment.created_at.strftime('%Y/%m/%d')} |
+      - if item_comment.customer == current_customer
+        = link_to item_comment_destroy_path(item_comment), method: :delete, class: btn btn-sm btn-danger do
+          \&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x524A;&#x9664;
+          %i.fas.fa-trash
+.pb-2

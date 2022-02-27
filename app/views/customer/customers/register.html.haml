@@ -1,0 +1,54 @@
+.container
+  .row
+    %p> 名前
+    ：
+    %p= @customer.full_name
+.container
+  .row
+    %p> ナマエ
+    ：
+    %p= @customer.full_name_kana
+.container
+  .row
+    %p> 自己紹介
+    ：
+    %p= @customer.introduction
+.container
+  .row
+    - @sell_items.each do |sell_item|
+      .col-12.col-sm-12.col-md-6.col-lg-4.mb-3
+        .card.shadow.card-org
+          .bg-white
+            = link_to customer_item_path do
+              = attachment_image_tag sell_item, :image, class: 'img-fluid sell-item-img'
+          .card-body
+            %h5.card-title= sell_item.name
+            .card-text
+              %p
+                値段：#{sell_item.price}円
+              %p
+                ジャンル：#{sell_item.genre.name}
+              %p
+                販売ステータス：#{sell_item.is_active}
+              %p
+                製作者：#{sell_item.customer.full_name}
+    .container
+      .row
+        .col-12.col-sm-12.col-md-6.col-lg-4.mb-3
+          = form_with model:@customer_review, url: customer_review_create_path(@customer), method: :post, local: true do |f|
+            = f.text_area :comment, rows:'5', placeholder: "クリエーターの評価", class: "form-control form-control-sm"
+            #rating-form.form-group.row
+              = f.label :rate,'評価', class:'star-title'
+              　
+              = f.hidden_field :rate, :value => 'score'
+            = f.submit "投稿する"
+            = link_to customer_review_index_path do
+              %p コメント一覧
+          :javascript
+            $('#rating-form').raty({
+            starOn: "#{asset_path('star-on.png')}",
+            starOff: "#{asset_path('star-off.png')}",
+            starHalf: '#{asset_path('star-half.png')}',
+            half: true,
+            scoreName: 'item_comment[rate]'
+            });

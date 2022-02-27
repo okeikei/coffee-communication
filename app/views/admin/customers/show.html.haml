@@ -1,0 +1,23 @@
+.row
+  .col-sm-12.col-md-8.col-lg-5.px-5.px-sm-0.mx-auto
+    %p last_name
+    %p= @customer.last_name
+    %p first__name
+    %p= @customer.first_name
+    %p last_name_kana
+    %p= @customer.last_name_kana
+    %p first_name_kana
+    %p= @customer.first_name_kana
+    %p email
+    %p= @customer.email
+    %p full_addresss
+    %p= @customer.full_address
+    %p telephone_number
+    %p= @customer.telephone_number
+    - if @customer == current_customer
+      - if @customer.is_deleted == false
+        会員ステータス: 有効
+      - else
+        会員ステータス: 退会
+      = link_to "編集", edit_admin_customer_path(@customer.id), class: 'nav-link text-dark'
+      = link_to "注文履歴", admin_root_path, class: 'nav-link text-dark'

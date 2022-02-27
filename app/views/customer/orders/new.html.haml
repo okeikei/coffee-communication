@@ -1,0 +1,23 @@
+%h1 注文情報入力
+= form_with model: @order, url: orders_comfirm_path, method: :post, local:true do |f|
+  %h4 支払方法
+  %script.payjp-button{"data-key" => "#{ENV["PAYJP_PUBLIC_KEY"]}", :src => "https://checkout.pay.jp", :type => "text/javascript"}
+    :cdata
+  = f.radio_button :payment_method, Order.payment_methods.key(1)
+  = f.label :payment_method, Order.payment_methods_i18n[:銀行振込]
+  %h4 お届け先
+  = f.radio_button :address_option, 0
+  = f.label :address_id, Order.address_ids_i18n[:ご自身の住所]
+  = @customer.customer_infomation
+  = f.radio_button :address_option, 1
+  = f.label :address_id, Order.address_ids_i18n[:登録済住所から選択]
+  = f.select :address_id, options_from_collection_for_select(Address.all, :id, :full_address)
+  = f.radio_button :address_option, 2
+  = f.label :address_id, Order.address_ids_i18n[:新しいお届け先]
+  %label{:for => "inputName"} 郵便番号
+  = f.text_field :postal_code, autofocus: true, id:"inputName", placeholder:"郵便番号"
+  %label{:for => "inputName"} 住所
+  = f.text_field :address, autofocus: true, id:"inputName", placeholder:"住所"
+  %label{:for => "inputName"} 宛名
+  = f.text_field :name, autofocus: true, id:"inputName", placeholder:"宛名"
+  = f.submit "変更を保存"
