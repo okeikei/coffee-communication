@@ -98,7 +98,6 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    digest-sha3 (1.1.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.6)
@@ -108,37 +107,12 @@ GEM
     enum_help (0.0.18)
       activesupport (>= 3.0.0)
     erubi (1.10.0)
-    erubis (2.7.0)
-    ethereum.rb (2.5)
-      activesupport (>= 4.0)
-      digest-sha3 (~> 1.1)
     execjs (2.8.1)
     ffi (1.15.5)
     font-awesome-sass (5.15.1)
       sassc (>= 1.11)
-    geocoder (1.7.3)
     globalid (1.0.0)
       activesupport (>= 5.0)
-    gmaps4rails (2.1.2)
-    gon (6.4.0)
-      actionpack (>= 3.0.20)
-      i18n (>= 0.7)
-      multi_json
-      request_store (>= 1.0)
-    haml (5.2.2)
-      temple (>= 0.8.0)
-      tilt
-    haml-rails (2.0.1)
-      actionpack (>= 5.1)
-      activesupport (>= 5.1)
-      haml (>= 4.0.6, < 6.0)
-      html2haml (>= 1.0.1)
-      railties (>= 5.1)
-    html2haml (2.2.0)
-      erubis (~> 2.7.0)
-      haml (>= 4.0, < 6)
-      nokogiri (>= 1.6.0)
-      ruby_parser (~> 3.5)
     http-accept (1.7.0)
     http-cookie (1.0.4)
       domain_name (~> 0.5)
@@ -184,7 +158,6 @@ GEM
     mini_portile2 (2.7.1)
     minitest (5.15.0)
     msgpack (1.4.4)
-    multi_json (1.15.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     mysql2 (0.5.3)
@@ -252,8 +225,6 @@ GEM
       mini_magick (~> 4.0)
       refile (~> 0.5)
     regexp_parser (2.2.0)
-    request_store (1.5.1)
-      rack (>= 1.4)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -277,8 +248,6 @@ GEM
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
     ruby_dep (1.5.0)
-    ruby_parser (3.18.1)
-      sexp_processor (~> 4.16)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -294,7 +263,6 @@ GEM
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
-    sexp_processor (4.16.0)
     sinatra (2.0.8.1)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -312,7 +280,6 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
-    temple (0.8.2)
     thor (1.2.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -353,12 +320,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   enum_help
-  ethereum.rb
   font-awesome-sass (~> 5.13)
-  geocoder
-  gmaps4rails
-  gon
-  haml-rails
   jbuilder (~> 2.5)
   jquery-rails
   kaminari (~> 1.2.1)
