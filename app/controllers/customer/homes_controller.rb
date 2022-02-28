@@ -1,7 +1,7 @@
 class Customer::HomesController < ApplicationController
     
   def top
-    @items = Item.all
+    @items = Item.page(params[:page]).reverse_order
     #@articles = Article.all.search(params[:search])
   end
   

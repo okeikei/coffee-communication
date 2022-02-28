@@ -16,7 +16,7 @@ class Customer::ItemsController < ApplicationController
   # end
 
   def index
-    @items = Item.all
+    @items = Item.page(params[:page]).reverse_order
 
     if params[:is_active] == true
       @items.is_active = "販売中"
