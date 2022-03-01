@@ -7,7 +7,7 @@
           <div class="card shadow card-org">
             <div class="bg-white">
               <%= link_to customer_register_path(customer.id) do %>
-                <%= attachment_image_tag customer, :image, class: 'img-fluid customer-img' %>
+                <%= attachment_image_tag customer, :image,  :fill, 100, 100, class: 'img-fluid customer-img' %>
               <% end %>
             </div>
             <div class="card-body">
@@ -40,5 +40,5 @@
       <% end %>
     <% end %>
   </div>
+  <%= paginate @customers %>
 </div>
-<%= paginate @customers %>

@@ -1,6 +1,6 @@
  <div class="row">
   <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-   <%= attachment_image_tag @item, :image %>
+   <%= attachment_image_tag @item, :image, :fill, 100, 100 %>
    <p>アイテム名：<%= @item.name %></p>
    <p>説明：<%= @item.introduction %></p>
    <p>ジャンル：<%= @item.genre.name %></p>
