@@ -1,18 +1,12 @@
  <div class="row">
   <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
    <%= attachment_image_tag @item, :image, :fill, 100, 100 %>
-   <p>アイテム名：<%= @item.name %></p>
-   <p>説明：<%= @item.introduction %></p>
+   <p>販売店名：<%= @item.shop_name %></p>
+   <p>品種名：<%= @item.name %></p>
+   <p>説明・おすすめの飲み方：<%= @item.introduction %></p>
    <p>ジャンル：<%= @item.genre.name %></p>
    <p>税抜金額：<%= @item.price%></p>
-   <p>製作者：<%= @item.customer.full_name %></p>
  
- <%= form_with model:@cart_items, url: cart_items_create_path, method: :post, local:true do |f| %>
- <%= f.hidden_field :item_id, value: params[:id] %>
- <%= f.select :amount, *[1..10] %>
- <%= f.submit 'カートに入れる' %>
- 
- <% end %>
  <% if @item.favorited_by?(current_customer) %>
     <p>
       <%= link_to favorite_destroy_path(@item), method: :delete do %>
@@ -29,12 +23,7 @@
   
   <%= form_with(model: @item_comment, url: item_comment_create_path(@item.id), method: :post, local: true) do |f| %>
 
-    <%= f.text_area :comment, rows:'5', placeholder: "商品のコメント", class: "form-control form-control-sm" %>
-    
-    <div class="form-group row" id="rating-form"> <%#id要素の付与がポイント%>
-    <%= f.label :rate,'評価', class:'star-title' %>　<%#保存したいカラムの指定%>
-        <%= f.hidden_field :rate, :value => 'score' %>
-    </div>
+    <%= f.text_area :comment, placeholder: "商品のコメント", class: "form-control form-control-sm" %>
 
     <%= f.submit "投稿する" %>
     
@@ -43,16 +32,6 @@
 　  <% end %>
   <% end %>
 
-
-<script>
-    $('#rating-form').raty({
-        starOn: "<%= asset_path('star-on.png') %>",
-        starOff: "<%= asset_path('star-off.png') %>",
-        starHalf: '<%= asset_path('star-half.png') %>',
-        half: true, 
-        scoreName: 'item_comment[rate]'
-    });
-</script>
 
 
   </div>

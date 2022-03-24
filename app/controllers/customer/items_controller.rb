@@ -73,7 +73,7 @@ class Customer::ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:customer_id, :name, :image, :introduction, :genre_id, :price, :is_active)
+    params.require(:item).permit(:customer_id, :name, :image, :introduction, :genre_id, :price, :is_active, :shop_name)
   end
 
 end

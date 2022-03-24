@@ -19,6 +19,7 @@ class Customer::SellItemsController < ApplicationController
   end
 
   def edit
+    @customer = current_customer
     @sell_item = Item.find(params[:id])
     # if params[:is_active] == true
     #   @items.is_active = "販売中"
@@ -35,7 +36,7 @@ class Customer::SellItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :image, :introduction, :genre_id, :price, :is_active, :customer_id)
+    params.require(:item).permit(:name, :image, :introduction, :genre_id, :price, :is_active, :customer_id, :shop_name)
   end
 
 end

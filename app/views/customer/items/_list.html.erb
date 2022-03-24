@@ -15,12 +15,11 @@
     <div class="card-body">
      <h5 class="card-title"><%= item.name %></h5>
       <div class="card-text">
-       <p>アイテム名：<%= item.name %></p>
-       <p>説明：<%= item.introduction %></p>
+       <p>販売店名：<%= item.shop_name %></p>
+       <p>品種名：<%= item.name %></p>
+       <p>説明・おすすめの飲み方：<%= item.introduction %></p>
        <p>値段：<%= item.price %>円</p>
        <p>ジャンル：<%= item.genre.name %></p>
-       <p>販売ステータス：<%= item.is_active %></p>
-       <p>製作者：<%= item.customer.full_name %></p>
        <%= link_to customer_favorites_path(item.id) do %>
        <p>♥：<%= item.favorites.count %> いいね
        <% end %>

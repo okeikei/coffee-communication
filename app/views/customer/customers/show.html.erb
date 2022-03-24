@@ -13,22 +13,6 @@
        <td><%= @customer.full_name_kana %></td>
      </tr>
      <tr>
-       <th scope="row">email</th>
-       <td><%= @customer.email %></td>
-     </tr>
-     <tr>
-       <th scope="row">住所</th>
-       <td><%= @customer.full_address %></td>
-     </tr>
-     <tr>
-       <th scope="row">email</th>
-       <td><%= @customer.email %></td>
-     </tr>
-     <tr>
-       <th scope="row">電話番号</th>
-       <td><%= @customer.telephone_number %></td>
-     </tr>
-     <tr>
        <th scope="row">自己紹介</th>
        <td><%= @customer.introduction %></td>
      </tr>
@@ -43,12 +27,6 @@
      </tr>
      <tr>
       <th scope="row"><%= link_to "退会", customer_unsubscribe_path, class: 'nav-link text-dark' %></th>
-     </tr>
-     <tr>
-      <th scope="row"><%= link_to "配送先", adderess_index_path, class: 'nav-link text-dark' %></th>
-     </tr>
-     <tr>
-      <th scope="row"><%= link_to "注文履歴", order_index_path, class: 'nav-link text-dark' %></th>
      </tr>
      <tr>
       <th scope="row"><%= link_to "投稿商品", customer_sell_items_path, class: 'nav-link text-dark' %></th>

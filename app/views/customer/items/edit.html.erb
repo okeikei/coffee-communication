@@ -15,11 +15,6 @@
   <label for="inputName">値段</label>
   <%= f.number_field :price, autofocus: true, id:"inputPrice", placeholder:"値段"%><br>
   
-  <%= f.radio_button :is_active, "販売中" %>
-  <%= f.label :is_active, "販売中" %>
-
-  <%= f.radio_button :is_active, "販売停止中" %>
-  <%= f.label :is_active, "販売停止中" %></br>
   
   <%= f.submit "変更を保存" %><br>
   
