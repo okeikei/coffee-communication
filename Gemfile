@@ -76,8 +76,3 @@ gem "rubocop"
 gem 'payjp'
 gem 'dotenv-rails'
 gem 'paranoia'
-gem 'dotenv-rails'
-group :production do
-  gem 'mysql2'
-end
-gem "pycall"
